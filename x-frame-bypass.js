@@ -69,9 +69,10 @@ customElements.define('x-frame-bypass', class extends HTMLIFrameElement {
 	}
 	fetchProxy (url, options, i) {
 		const proxies = (options || {}).proxies || [
-			'https://cors-anywhere.herokuapp.com/',
-			'https://yacdn.org/proxy/',
-			'https://api.codetabs.com/v1/proxy/?quest='
+			// by default use a CORS proxy to bypass X-Frame-Options DENY/ALLOWALL
+			'https://api.allorigins.win/raw?url=',
+			// Proxy alternatives i.e. my test'https://go.kinkyl.ink/raw?url=',
+			// More ...
 		]
 		return fetch(proxies[i] + url, options).then(res => {
 			if (!res.ok)
